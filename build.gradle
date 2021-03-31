@@ -25,11 +25,3 @@ test {
 run {
     standardInput = System.in
 }
-
-task bd {
-    dependsOn allprojects.collect { proj ->
-        proj.tasks.matching {
-            it.name == 'build'
-        }
-    }
-}
