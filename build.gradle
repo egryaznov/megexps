@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.jetbrains:annotations:16.0.2'
+    testImplementation 'junit:junit:4.13'
+}
+
+application {
+    mainClassName = 'ya.moguchi.Main'
+}
+
+test {
+    // useJUnitPlatform()
+    reports.html.enabled(false)
+    reports.junitXml.enabled(false)
+}
+
+run {
+    standardInput = System.in
+}
+
+task bd {
+    dependsOn allprojects.collect { proj ->
+        proj.tasks.matching {
+            it.name == 'build'
+        }
+    }
+}
